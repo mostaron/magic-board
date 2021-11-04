@@ -1,6 +1,8 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
-import sys
+import sys, time
+
+from sensor.Sensor import *
 
 
 class MainWindow(QWidget):
@@ -18,10 +20,11 @@ class MainWindow(QWidget):
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.imgLabel.setFixedSize(self.width, self.height)
         self.imgLabel.move(0, 0)
-        self.imgLabel.setStyleSheet("QLabel{background: Black;}")
-        img = QtGui.QPixmap("/Users/neil/103976/PIC-总数统计.png").scaled(self.width, self.height)
-        self.imgLabel.setPixmap(img)
+        # self.imgLabel.setStyleSheet("QLabel{background: White;}")
+        # img = QtGui.QPixmap("/Users/neil/103976/PIC-总数统计.png").scaled(self.width, self.height)
+        # self.imgLabel.setPixmap(img)
         self.move(0, 0)
+        Sensors(sound_handler=self.sound_handler, light_handler=self.light_handler)
         self.showNormal()
 
     def keyPressEvent(self, e: QtGui.QKeyEvent) -> None:
@@ -31,6 +34,31 @@ class MainWindow(QWidget):
                 self.imgLabel.clear()
             else:
                 sys.exit()
+
+    def sound_handler(self, light_status):
+        """
+        处理声音事件
+        :param light_status:
+        :return:
+        """
+        if light_status == LIGHT_STATUS:
+            self.imgLabel.setStyleSheet("QLabel{background: #Green;}")
+        else:
+            self.imgLabel.setStyleSheet("QLabel{background: #RED;}")
+
+        time.sleep(30)
+        self.light_handler(light_status)
+
+    def light_handler(self, light_status):
+        """
+        处理光线事件
+        :param light_status:
+        :return:
+        """
+        if light_status == LIGHT_STATUS:
+            self.imgLabel.setStyleSheet("QLabel{background: #Black;}")
+        else:
+            self.imgLabel.setStyleSheet("QLabel{background: #White;}")
 
 
 app = QtWidgets.QApplication(sys.argv)

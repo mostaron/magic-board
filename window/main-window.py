@@ -52,7 +52,7 @@ class MainWindow(QWidget):
         else:
             self.imgLabel.setStyleSheet("QLabel{background: RED;}")
 
-        time.sleep(30)
+        time.sleep(10)
         self.light_handler(light_status)
 
     def light_handler(self, light_status):

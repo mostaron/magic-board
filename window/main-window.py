@@ -48,9 +48,9 @@ class MainWindow(QWidget):
         :return:
         """
         if light_status == LIGHT_STATUS:
-            self.imgLabel.setStyleSheet("QLabel{background: #Green;}")
+            self.imgLabel.setStyleSheet("QLabel{background: Green;}")
         else:
-            self.imgLabel.setStyleSheet("QLabel{background: #RED;}")
+            self.imgLabel.setStyleSheet("QLabel{background: RED;}")
 
         time.sleep(30)
         self.light_handler(light_status)
@@ -62,9 +62,9 @@ class MainWindow(QWidget):
         :return:
         """
         if light_status == LIGHT_STATUS:
-            self.imgLabel.setStyleSheet("QLabel{background: #Black;}")
+            self.imgLabel.setStyleSheet("QLabel{background: Black;}")
         else:
-            self.imgLabel.setStyleSheet("QLabel{background: #White;}")
+            self.imgLabel.setStyleSheet("QLabel{background: White;}")
 
 
 app = QtWidgets.QApplication(sys.argv)

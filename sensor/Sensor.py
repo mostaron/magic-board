@@ -18,6 +18,9 @@ DARK_STATUS = 1
 class Sensors:
 
     def __init__(self, sound_handler, light_handler):
+
+        print("init sensor")
+
         GPIO.setmode(GPIO.BOARD)
 
         # 指定GPIO4（声音感应器的OUT口连接的GPIO口）的模式为输入模式
@@ -32,8 +35,6 @@ class Sensors:
         GPIO.add_event_detect(SENSOR, GPIO.BOTH, self.callback_light, bouncetime=300)
         # 监听声控
         GPIO.add_event_detect(SENSOR2, GPIO.BOTH, self.callback_sound, bouncetime=300)
-
-        GPIO.cleanup()
 
     def callback_light(self):
         # 检测声音感应器是否输出低电平，若是低电平，表示声音被检测到，点亮或关闭LED

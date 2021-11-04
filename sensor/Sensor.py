@@ -35,6 +35,8 @@ class Sensors:
         GPIO.add_event_detect(SENSOR, GPIO.BOTH, self.callback_light, bouncetime=300)
         # 监听声控
         GPIO.add_event_detect(SENSOR2, GPIO.BOTH, self.callback_sound, bouncetime=300)
+        self.light_handler(GPIO.input(SENSOR))
+
 
     def callback_light(self, channel):
         # 检测声音感应器是否输出低电平，若是低电平，表示声音被检测到，点亮或关闭LED

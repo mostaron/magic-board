@@ -1,8 +1,14 @@
+import os.path
+
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.Qt import *
 import sys, time
 
 from sensor.Sensor import *
+
+current_path = os.path.abspath(os.path.dirname(__file__))
+root_path = os.path.split(current_path)[0]
+sys.path.append(root_path)
 
 
 class MainWindow(QWidget):
